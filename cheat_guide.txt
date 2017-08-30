@@ -1,0 +1,95 @@
+Cheat Guide - Oficina GIT
+
++ Criar diretório para ser o repositório
++- no windows usar na linha de comando sempre o BashShell (botão direito)
+# git init && git status
+# touch file.txt && git status
+# git add file.txt && git status
+# Edite o arquivo e git status
+# git add file.txt && git status
++ Primeiro commit
+# git commit -m "First commit !"
+  + Mostrar o commit através do vi
+  + Configuracao do user.email e user.name
+  # git config --global user.email "hugo.marcondes@ifsc.edu.br"
+  # git config --global user.name "Hugo Marcondes"
+  + $HOME/.gitconfig
+# git log [--oneline] [--graph] [—-all] [—decorate]
+# git config —-global alias.clog “log -—decorate —-graph —-oneline” 
+# git config —-global alias.ci “commit -a”
+# git config —-global alias.st status
+# git config —-global alias.co checkout
+=========
+++ Slides - experimentação para os alunos
+# git diff
+  # git diff : diff entre working tree e staging
+  # git diff -cached : diff entre staging e last commit
+  # git diff HEAD : diff entre working tree e last comm
+=========
++ Config do Git no IDE (Eclipse e Codeblocks)
++ gitignore
+=========
++ Desfazendo mudanças
+# git checkout file.txt - se não foi added
++++++ Se ja added ( não muda stagged )
+# git add f4.txt && git status
+# git reset f4.txt && git status
++++++
+# git add f4.txt
+# git reset HEAD f4.txt && git status
++ the file has been unstaged.
+# git checkout f4.txt
++ resets the working copy to its state at the last commit
++++++ - Se já foi commitado!
+$ git add kitten.txt
+$ git status
+$ git commit -m "Make a change I will soon regret making"
+$ git log --oneline
+# you should see (at least) two commits here at this point
+# copy the short form of the hash id
+$ git reset --soft 53d23c4 #Não muda working
+$ git log --oneline
+$ git reset --hard 53d23c4 #Muda working
+$ git log --oneline
+=========
+# git checkout <commit_id>
+# git log
+# git log master
+=========
+BRanching
+# git checkout -b feature
++ Editar um arquivo
+# git status
+# git add file2.txt
+# git commit -m "Adicionando modificacao do branch feature"
+# git log --oneline
++ mostrar a troca entre os ramos
++ fazer o merge
+# git checkout master
+# git merge feature
+# git log --oneline
++ Observacao - fast forward.
+#=========
+# git checkout -b conflict_branch
++ Criar um conflito
+# git merge master (criar o conflito no conflict_merge)
++ verificar com git status e abrir arquivo com o conflito
++ apos resolver o conflito git add + git commit
+#==========
+Criar conta / repositorio no GitHUB
+# git remote
+# git remote add origin <remote_url>
+# git push -u origin master
+== Demonstrar demais comandos (pull, fetch e clone)
+== COnflitos - Rebase origin
+git pull --rebase origin master
+# Conflict and resolve
+git add <some-file>
+git rebase --continue
+or
+git rebase --abort
+========+++
+Tags:
+$ git tag [-a] <tag_name> [<commit_id>]
+$ git push origin {<tag> | --tags}
+========+++
