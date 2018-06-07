@@ -93,3 +93,38 @@ Tags:
 $ git tag [-a] <tag_name> [<commit_id>]
 $ git push origin {<tag> | --tags}
 ========+++
+# Submodule - https://git-scm.com/docs/git-submodule
+# add a submodule
+git submodule add <url> <path>
+# occasionally update the submodule to a new version:
+git -C <path> checkout <new version>
+git add <path>
+git commit -m "update submodule to new version"
+# See the list of submodules in a superproject
+git submodule status
+---
+#git submodule - https://stackoverflow.com/questions/36236484/maintaining-a-git-repo-inside-another-git-repo/36250858#36250858
+#Break your big project to sub projects as you did so far.
+#Now add each sub project to you main project using :
+git submodule add <url>
+#Once the projected is added tot your repo you have to init and update it.
+git submodule init
+git submodule update
+#As of Git 1.8.2 new option --remote was added
+git submodule update --remote --merge
+#will fetch the latest changes from upstream in each submodule, merge them in, and check out the latest revision of the submodule.
+---
+#With version 2.13 of Git and later, --recursive has been deprecated and --recurse-submodules should be used instead:
+git clone --recurse-submodules -j8 git://github.com/foo/bar.git
+cd bar
+#Editor’s note: -j8 is an optional performance optimization that became available in version 2.8, and fetches up to 8 submodules at a time in parallel — see man git-clone.
+#With version 1.9 of Git up until version 2.12 (-j flag only available in version 2.8+):
+git clone --recursive -j8 git://github.com/foo/bar.git
+cd bar
+#With version 1.6.5 of Git and later, you can use:
+git clone --recursive git://github.com/foo/bar.git
+cd bar
+#For already cloned repos, or older Git versions, use:
+git clone git://github.com/foo/bar.git
+cd bar
+git submodule update --init --recursive
